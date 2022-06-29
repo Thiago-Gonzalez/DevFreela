@@ -1,0 +1,2 @@
+# DevFreela
+DevFreela é um projeto de desenvolvimento de APIs, realizado durante o curso Método .NET Direto ao Ponto da Luis Dev Treinamentos, como forma de aprendizado, e no qual são utilizadas as tecnologias .NET Core, ASP.NET Core, Persistencia com Entity Framework Core e Dapper, Padrões de Arquitetura Limpa (Onion Archtecture), CQRS, Padrão Repository, Autenticação e Autorização com JWT, testes unitários com xUnit, Azure DevOps Pipelines, Microservices e Mensageria com RabbitMQ.
