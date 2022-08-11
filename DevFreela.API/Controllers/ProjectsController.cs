@@ -96,10 +96,11 @@ namespace DevFreela.API.Controllers
         // api/projects/1/start
         [HttpPut("{id}/start")]
         [Authorize(Roles = "client")]
-        public IActionResult Start(int id)
+        public async Task<IActionResult> Start(int id)
         {
             var command = new StartProjectCommand(id);
-            _mediator.Send(command);
+            
+            await _mediator.Send(command);
 
             return NoContent();
         }
@@ -107,13 +108,18 @@ namespace DevFreela.API.Controllers
         // api/projects/1/finish
         [HttpPut("{id}/finish")]
         [Authorize(Roles = "client")]
-        public async Task<IActionResult> Finish(int id)
+        public async Task<IActionResult> Finish(int id, [FromBody] FinishProjectCommand command)
         {
-            var command = new FinishProjectCommand(id);
+            command.Id = id;
 
-            await _mediator.Send(command);
+            var result = await _mediator.Send(command);
 
-            return NoContent();
+            if (!result)
+            {
+                return BadRequest("O pagamento não pôde ser processado.");
+            }
+
+            return Accepted();
         }
     }
 }
